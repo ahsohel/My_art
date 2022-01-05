@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<title>Profile</title>
+
+<style>
+    .selectParent {
+  width: 80px;
+  overflow: hidden;
+}
+
+.selectParent select {
+  text-indent: 1px;
+  text-overflow: '';
+  width: 100px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 2px 2px 2px 2px;
+  border: none;
+  background: transparent url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") no-repeat 60px center;
+}
+
+
+</style>
+
+
+
+<!--<nav class="navbar mx-auto navbar-expand-lg navbar-dark bg-dark" id="navbar">-->
+<!--  <div class="container">-->
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"-->
+<!--      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
+<!--      <div class="navbar-nav mx-auto">-->
+<!--        <a class="nav-link active" aria-current="page" href="#">TapArt</a>-->
+<!--        <a class="nav-link" href="#">Guide</a>-->
+<!--        <a class="nav-link" href="#">Contact</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+
+
+<!--<div class="content-section">-->
+<!--  <span class="row">s</span>-->
+<!--  <div class="row">-->
+<!--    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">-->
+
+<!--      s-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--  hi-->
+
+<!--</div>-->
+
+
+<div class="content-section">
+  <div class="border-bottom mb-4">
+    {% if user.is_authenticated %}
+    {% include 'subdomain_navbar.html' %}
+    {% endif %}
+  </div>
+  <!--    <form class="form-check" action="." method="POST" enctype="multipart/form-data">-->
+<!--  <form class="form-check" action="." method="POST">-->
+
+
+
+  <form class="form-check" action="{% url 'going_to_save_account' %}" method="GET">
+
+    <fieldset class="form-group">
+<!--      <legend class="border-bottom mb-4">Welcome {{ user.username }}</legend>-->
+
+        <h4 style="margin-top: 26px; margin-bottom: 16px;">User Details</h4>
+
+      <div class="row">
+
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+
+<!--              {{ u_form.username|as_crispy_field }}-->
+               <label>Username*</label><br>
+            <input name="going_to_change_User_tabel_username" type="text" class="form-control" style="width: 250px; height: 38px;" value="{{get_data.username}}">
+
+          </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+<!--            {{ u_form.email|as_crispy_field }}-->
+        <label>Email*</label><br>
+            <input name="going_to_change_User_tabel_email" type="email" class="form-control" style="width: 250px; height: 38px;"  value="{{get_data.email}}">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+<!--            {{ p_form.name|as_crispy_field }}-->
+            <label>Display Name*</label><br>
+            <input name="going_to_change_profile_tabel_name" class="form-control" style="width: 250px; height: 38px;" value="{{get_data_profile.name}}">
+
+        </div>
+      </div>
+
+      <div class="row">
+<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h4 style="margin-top: 26px; margin-bottom: 16px;">Payment Details</h4></span>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+            <label for="carss">Perfered payment*</label><br>
+    <select  class=" selectParent" name="going_to_change_profile_tabel_Perfered_payment" id="carss" style="width: 250px;max-height: 100px;height: 38px;padding: 0.375rem 0.75rem;font-size: 1rem;color: #495057;background-color: #fff;background-clip: padding-box;border: 1px solid #ced4da;border-radius: 0.25rem;transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;">
+      <option value="{{get_data_profile.prefered_payment}}">{{get_data_profile.prefered_payment}} </option>
+      <option value="PayPal">PayPal</option>
+      <option value="Mobile Money (MTN/Airtel)">Mobile Money<br>
+(MTN/Airtel)</option>
+        <option value="Bank Transfer">Bank Transfer</option>
+
+    </select>
+
+<!--            {{ p_form.prefered_payment|as_crispy_field }}-->
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+            <label>Payment account detalls*</label><br>
+            <input name="going_to_change_profile_tabel_Payment_account_detalls" value="{{get_data_profile.payment_account_details}}" class="form-control" style="width: 250px; height: 38px;">
+
+<!--            {{ p_form.payment_account_details|as_crispy_field }}-->
+        </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+{% if  get_data_profile_social_info %}
+              <label>Social Media</label><br>
+              {% for i in get_data_profile_social_info %}
+
+
+
+
+                <div class="input-group mb-3">
+                      <input value="{{i.social_media_handles_url}}" name="inpt_link1" type="text" class="form-control" style=" width: 141px;">
+                    <div class="input-group-append">
+                                <span class="input-group-text" style=" width: 36px; padding: 0px; margin: 0px;">
+                                    <a href="{% url 'delete_this' i.id %}" class="input-group-text">X</a>
+                                </span>
+                          </div>
+
+                            <label for="cars"></label>
+                            <select name="select_name1">
+                              <option  value="{{i.social_media_handles_name}}">{{i.social_media_handles_name}}</option>
+
+                            </select>
+                </div>
+
+
+
+
+
+              {% endfor %}
+{% else %}
+          <label>Social Media</label><br>
+          {% endif %}
+
+              <input value="1" type="hidden" id="in1">
+
+                <div class="input-group mb-3" id="testid1">
+
+                      <input name="inpt_link1" type="text" class="form-control" style=" width: 141px;">
+
+                          <div class="input-group-append">
+                                <span class="input-group-text" style=" width: 36px; padding: 0px; margin: 0px;" id="basic-addon2">
+                                    <a onclick="pluse_func()" class="input-group-text">+</a>
+<!--                                    <a onclick="Minus_func('1')" class="input-group-text">-</a>-->
+                                </span>
+                          </div>
+
+                            <label for="cars"></label>
+                            <select name="select_name1" id="cars">
+                              <option value="">Choose</option>
+                              <option value="Instagram">Behance</option>
+                              <option value="pinterest">Dribble</option>
+                              <option value="facebook">Facebook</option>
+                              <option value="facebook">Instagram</option>
+                              <option value="facebook">Press</option>
+                              <option value="twitter">Twitter</option>
+                              <option value="twitter">Website</option>
+                            </select>
+                </div>
+
+          </div>
+
+
+
+
+
+      </div>
+
+
+
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+<!--            <button class="btn" href="{% url 'design' %}" style="background-color: black; color: white; margin-left: 65px; margin-top: 22px;"-->
+<!--        type="submit">Update</button>-->
+
+            <br><br><button type="submit" class="btn btn-dark text-light" style="margin-left: 51px;">Upload Video &#8594;</button>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+      </div>
+
+
+        <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <img src="https://cdn.shopify.com/s/files/1/0142/6273/0810/files/410_for_mobile_410x.png?v=1613699267" alt="TapArt Logo" width="60" height="60" class="center" style="background-color: #ffffff; margin-left: 93px; height: 60px; width: 60px; margin-top: 15px;" >
+
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+      </div>
+
+
+
+
+
+
+
+
+<!--      <br>-->
+<!--      <h2>Payment Details</h2>-->
+<!--      {{ p_form|crispy }}-->
+    </fieldset>
+
+  </form>
+  <div class="border-top pt-3">
+    <small class="text-muted">
+      Change Password? <a class="ml-2" href="{% url 'signup' %}">Reset Password</a>
+    </small>
+  </div>
+</div>
+
+
+
+<script>
+
+      function pluse_func(){
+        var mynum = document.getElementById('in1').value;
+        var var_new_num = parseInt(mynum)+1;
+        console.log(var_new_num)
+        document.getElementById('in1').value = var_new_num;
+
+
+          $(`<div class="input-group mb-3" id="testid${var_new_num}">
+          <input name="inpt_link${var_new_num}" type="text" class="form-control" style=" width: 141px;">
+          <div class="input-group-append">
+            <span class="input-group-text" style=" width: 71px; padding: 0px; margin: 0px;" id="basic-addon2">
+                <a onclick="pluse_func()" class="input-group-text">+</a>
+                <a onclick="Minus_func('${var_new_num}')" class="input-group-text">-</a>
+                </span>
+          </div>
+
+            <label for="cars"></label>
+                    <select name="select_name${var_new_num}" id="cars">
+                    <option value="">Choose</option>
+                      <option value="Instagram">Instagram</option>
+                      <option value="pinterest">pinterest</option>
+                      <option value="facebook">facebook</option>
+                      <option value="twitter">twitter</option>
+                    </select>
+        </div>`).insertAfter("#testid" + mynum);
+
+    }
+
+
+      function Minus_func(box_id){
+        var mynum = document.getElementById('in1').value;
+        console.log('Minus')
+        var id_con = document.getElementById('testid'+box_id);
+        if(mynum == box_id){
+            document.getElementById('in1').value = mynum - 1;
+            id_con.remove();
+        }
+        else{
+            id_con.remove();
+        }
+
+        }
+
+  </script>
+
+{% endblock %}

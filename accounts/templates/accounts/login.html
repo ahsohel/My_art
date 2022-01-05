@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!--<nav class="navbar mx-auto navbar-expand-lg navbar-dark bg-dark" id="navbar">-->
+<!--  <div class="container">-->
+<!--    <button-->
+<!--      class="navbar-toggler"-->
+<!--      type="button"-->
+<!--      data-bs-toggle="collapse"-->
+<!--      data-bs-target="#navbarNavAltMarkup"-->
+<!--      aria-controls="navbarNavAltMarkup"-->
+<!--      aria-expanded="false"-->
+<!--      aria-label="Toggle navigation"-->
+<!--    >-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
+<!--      <div class="navbar-nav mx-auto">-->
+<!--        <a class="nav-link active" aria-current="page" href="#">TapArt</a>-->
+<!--        <a class="nav-link" href="#">Guide</a>-->
+<!--        <a class="nav-link" href="#">Contact</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+
+<div class="content-section" style="text-align: center;">
+    <h1>Artist Portal</h1>
+    <br>
+    <h2 style="text-align:center;"><b>Log In</b></h2>
+    <br>
+
+    <form class="form-check" action="{% url 'login_page' %}" method="POST">
+        {% csrf_token %}
+<!--        <fieldset class="form-group" style= "">-->
+<!--            <legend class="border-bottom mb-4">Sign up as an Artist</legend>-->
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    {% if massage_log_out %}
+                    <div class="alert alert-success" role="alert">
+                      {{massage_log_out}}
+                    </div>
+                    {% endif %}
+                    {% if massage_for_wrong_info %}
+                    <div class="alert alert-danger" role="alert">
+                      {{massage_for_wrong_info}}
+                    </div>
+                    {% endif %}
+
+                    Username*
+                    <input  type="text" name="get_username" style="display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: .25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" class="textinput textInput form-control" required="" id="id_username">
+                    Password*
+                    <input  type="password" name="get_Password" style="display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: .25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" class="textinput textInput form-control" required="" id="id_username">
+
+
+
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+
+            </div>
+
+
+<!--        </fieldset>-->
+        <br>
+        <div class="form-group">
+            <button class="btn" style="background-color: black; color: white;" type="submit">Log In</button>
+        </div>
+    </form>
+    <br>
+    <div>
+        <small class="text-muted">
+            Don't have an account? <a class="ml-2" href="{% url 'signup' %}">Sign Up</a>
+        </small>
+    </div>
+    <br>
+    <img src="https://cdn.shopify.com/s/files/1/0142/6273/0810/files/410_for_mobile_410x.png?v=1613699267" alt="TapArt Logo" width="60" height="60" class="center">
+
+</div>
+
+{% endblock %}

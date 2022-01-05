@@ -1,0 +1,68 @@
+
+<!-- Header Area -->
+
+
+<div class="row">
+
+
+
+<nav class="navbar mx-auto navbar-expand-lg navbar-light" id="navbar" style="background-color: #dddddd;">
+
+
+
+
+    <div class="container">
+      <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+
+
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ><a class="nav-link active" aria-current="page" href="{% url 'profile' %}" style="color: black;" onclick="aaa()">Account</a></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><a class="nav-link " href="{% url 'design' %}" style="color: black;" id ="hi_reload_for" onclick="Designs_aaa()">Designs</a></div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style=" align: right; ">
+                    <a class="nav-link btn btn-dark" onclick="logout_aaa()" href="{% url 'login_redirect_from_logout' %}" method="post" style=" width: 99px; margin-left: 118px;">
+            {% if user.is_authenticated %}
+                {% csrf_token %}
+                    <span style="color: white; margin-left: 6px;">Log Out</span>
+            {% endif %}
+            </a></div>
+
+
+            </div>
+
+
+
+
+
+<!--        <button-->
+<!--        class="navbar-toggler"-->
+<!--        type="button"-->
+<!--        data-bs-toggle="collapse"-->
+<!--        data-bs-target="#navbarNavAltMarkup"-->
+<!--        aria-controls="navbarNavAltMarkup"-->
+<!--        aria-expanded="false"-->
+<!--        aria-label="Toggle navigation"-->
+<!--      >-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--      </button>-->
+<!--      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
+<!--        <div class="navbar-nav mx-auto">-->
+<!--&lt;!&ndash;            <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-2"><a class="nav-link active" aria-current="page" href="{% url 'profile' %}">Account</a></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-2"><a class="nav-link " href="{% url 'design' %}">Designs</a></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-8"><a class="nav-link" href="{% url 'logout_page' %}" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;            {% if user.is_authenticated %}&ndash;&gt;-->
+<!--&lt;!&ndash;                {% csrf_token %}&ndash;&gt;-->
+<!--&lt;!&ndash;                    Log Out&ndash;&gt;-->
+<!--&lt;!&ndash;            {% endif %}&ndash;&gt;-->
+<!--&lt;!&ndash;            </a></div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+
+
+<!--        </div>-->
+<!--      </div>-->
+
+  </nav>
+</div>

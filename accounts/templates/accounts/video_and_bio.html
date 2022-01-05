@@ -1,0 +1,362 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .custom-file-label {
+    position: relative;
+    top: 4px;
+    right: 0px;
+    left: 194px;
+    z-index: 1;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #ffffff;
+    background-color: #fff;
+    border: 1px solid #ffffff;
+    border-radius: .25rem;
+}
+
+</style>
+
+<style>
+
+    .input-file{
+display: none;
+}
+.input-btn{
+  background-color:#ffffff;
+  border: 12px solid #ffffff;
+
+}
+.input-btn:hover{
+  background-color:#ffffff;
+}
+
+</style>
+
+<style>
+    video, canvas {
+    display: none;
+}
+
+</style>
+
+<title>Profile</title>
+
+
+<!--<nav class="navbar mx-auto navbar-expand-lg navbar-dark bg-dark" id="navbar">-->
+<!--  <div class="container">-->
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"-->
+<!--      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
+<!--      <div class="navbar-nav mx-auto">-->
+<!--        <a class="nav-link active" aria-current="page" href="#">TapArt</a>-->
+<!--        <a class="nav-link" href="#">Guide</a>-->
+<!--        <a class="nav-link" href="#">Contact</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+
+
+<!--<div class="content-section">-->
+<!--  <span class="row">s</span>-->
+<!--  <div class="row">-->
+<!--    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">-->
+
+<!--      s-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--  hi-->
+
+<!--</div>-->
+
+
+<div class="content-section">
+  <div class="border-bottom mb-4">
+    {% if user.is_authenticated %}
+    {% include 'subdomain_navbar.html' %}
+    {% endif %}
+  </div>
+
+<form action="{% url 'going_to_save_all_info' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="row">
+
+
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"><br>
+            Upload a Profile Picture<br><br>
+            <input type="file" id="filetag" class='input-file' name="profile_pic_for_save"></br>
+            <button type="button" onclick="click_function_is_pic()" class="input-btn" style="width: 268px;height: 228px;border: 1px solid;">
+                {% if get_Profile.profile_pic %}
+                <img style="width: 257px;height: 220px;" src="https://tapart-art-original.s3.amazonaws.com/{{get_Profile.profile_pic}}" id="preview">
+
+                {% else %}
+
+                <img src="" id="preview" >
+                <span style="color:black; font-size: 62px;">+</span>
+                {% endif %}
+                </button>
+
+
+
+        </div>
+<!--        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>-->
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"  style="margin-left: 17px;">
+            <br>Bio (Please leave a 4-5 sentence description)<br><br>
+            <textarea name="upload_a_Bio"  style="width: 338px;height: 228px;border: 1px solid;">
+{% if get_Profile %}
+                {{get_Profile.bio}}
+ {% endif %}
+            </textarea>
+        </div>
+<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style=""><br>
+            Upload a 1-minute video (Introduce yourself and your artwork)<br><br>
+
+            <video controls>
+                <source type="video/mp4">
+                <source type="video/WEBM">
+                <source type="video/mov">
+                <source type="video/mpg">
+                <source type="video/mp2">
+                <source type="video/mpeg">
+                <source type="video/mpe">
+                <source type="video/mp4">
+                <source type="video/flv">
+                <source type="video/WMV">
+                <source type="video/webm">
+                <source type="video/mkv">
+                <source type="video/flv">
+                <source type="video/vob">
+                <source type="video/gif">
+                <source type="video/avi">
+                <source type="video/mts">
+                <source type="video/m2ts">
+                <source type="video/ts">
+                <source type="video/m4p">
+                <source type="video/m4v">
+                <source type="video/svi">
+                <source type="video/3gp">
+                <source type="video/3g2">
+                <source type="video/mxf">
+                <source type="video/nsv">
+                <source type="video/flv">
+                <source type="video/f4v">
+                <source type="video/f4p">
+
+            </video>
+
+
+
+            <input type='file' name="upload_a_video" class='input-file' id="input_file">
+
+            <button type="button" class='input-btn' onclick="click_function_is_this()" id='input_btn' style="width: 373px;height: 227px;border: 1px solid;margin-left: 4px;">
+            {% if get_Profile.profile_video %}
+            <div class="embed-responsive embed-responsive-4by3" style="height:100px; width:180px; margin:0 auto;" id="past_vdo">
+            <iframe class="embed-responsive-item" src="https://tapart-art-original.s3.amazonaws.com/{{get_Profile.profile_video}}?" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+
+
+            <canvas></canvas>
+            <span style="color:black; font-size: 62px;" id="plus_symbl">+</span>
+            <img src="" id="preview_vedio"/>
+
+            {% else %}
+                <span id="past_vdo"></span>
+            <canvas></canvas>
+            <span style="color:black; font-size: 62px;" id="plus_symbl">+</span>
+            <img  src="" id="preview_vedio"/>
+            {% endif %}
+
+
+
+
+            </button>
+
+
+
+        </div>
+
+
+
+<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="">
+
+        </div>
+<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><br><br>
+
+<a  href="{% url 'profile' %}" class="btn" style="background-color: black; color: white; margin-left: 65px; margin-top: 22px;">&#8592; account</a>
+
+
+
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><br><br>
+            <button class="btn" style="background-color: black; color: white; margin-left: 65px; margin-top: 22px;"
+        type="submit">Update</button>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+
+<img src="https://cdn.shopify.com/s/files/1/0142/6273/0810/files/410_for_mobile_410x.png?v=1613699267" alt="TapArt Logo" width="60" height="60" class="center" style=" margin-left: 75px;  margin-top: 15px;">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+
+
+
+
+    </div>
+
+
+
+<input type="hidden" value="{{going_to_change_User_tabel_username}}" name="User_tabel_username">
+<input type="hidden" value="{{going_to_change_User_tabel_email}}" name="User_tabel_email">
+<input type="hidden" value="{{going_to_change_profile_tabel_name}}" name="profile_tabel_name">
+<input type="hidden" value="{{going_to_change_profile_tabel_Perfered_payment}}" name="profile_tabel_Perfered_payment">
+<input type="hidden" value="{{going_to_change_profile_tabel_Payment_account_detalls}}" name="profile_tabel_Payment_account_detalls">
+<input type="hidden" value="{{inpt_link1}}" name="inpt_link1">
+<input type="hidden" value="{{select_name1}}" name="select_name1">
+<input type="hidden" value="{{inpt_link2}}" name="inpt_link2">
+<input type="hidden" value="{{select_name2}}" name="select_name2">
+<input type="hidden" value="{{inpt_link3}}" name="inpt_link3">
+<input type="hidden" value="{{select_name3}}" name="select_name3">
+<input type="hidden" value="{{inpt_link4}}" name="inpt_link4">
+<input type="hidden" value="{{select_name4}}" name="select_name4">
+<input type="hidden" value="{{inpt_link5}}" name="inpt_link5">
+<input type="hidden" value="{{select_name5}}" name="select_name5">
+<input type="hidden" value="{{inpt_link6}}" name="inpt_link6">
+<input type="hidden" value="{{select_name6}}" name="select_name6">
+<input type="hidden" value="{{inpt_link7}}" name="inpt_link7">
+<input type="hidden" value="{{select_name7}}" name="select_name7">
+<input type="hidden" value="{{inpt_link8}}" name="inpt_link8">
+<input type="hidden" value="{{select_name8}}" name="select_name8">
+
+
+
+
+
+
+
+
+
+
+
+</form>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+
+function click_function_is_this(){
+    document.getElementById("input_file").click();
+    var v_past_vdo = document.getElementById('past_vdo');
+    v_past_vdo.remove();
+}
+
+
+
+function click_function_is_pic(){
+    document.getElementById("filetag").click();
+    //var v_past_vdo = document.getElementById('past_vdo');
+    //v_past_vdo.remove();
+
+
+    document.getElementById('preview').style = "width: 257px;height: 220px;"
+
+}
+
+
+
+</script>
+
+
+
+<script>
+
+    $(function() {
+    var video = $("video");
+    var thumbnail = $("canvas");
+    var input = $("input[type=file]");
+    var ctx = thumbnail.get(0).getContext("2d");
+    var duration = 0;
+    //var img = $("img");
+    var imgg = document.getElementById("preview_vedio");
+
+    input.on("change", function(e) {
+        document.getElementById('plus_symbl').innerHTML = "";
+
+        var file = e.target.files[0];
+        // Validate video file type
+        //if (["video/mp4", "video/mp4"].indexOf(file.type) === -1) {
+        //    alert("Only 'MP4' video format allowed.");
+        //    return;
+        //}
+        // Set video source
+        video.find("source").attr("src", URL.createObjectURL(file));
+        // Load the video
+        video.get(0).load();
+        // Load metadata of the video to get video duration and dimensions
+        video.on("loadedmetadata", function(e) {
+            duration = video.get(0).duration;
+            // Set canvas dimensions same as video dimensions
+            //thumbnail[0].width = video[0].videoWidth;
+            thumbnail[0].width = 360;
+            //thumbnail[0].height = video[0].videoHeight;
+            thumbnail[0].height = 215;
+            // Set video current time to get some random image
+            video[0].currentTime = Math.ceil(duration / 2);
+            // Draw the base-64 encoded image data when the time updates
+            video.one("timeupdate", function() {
+                ctx.drawImage(video[0], 3, 0, video[0].videoWidth, video[0].videoHeight);
+                //img.attr("src", thumbnail[0].toDataURL());
+                preview_vedio.setAttribute('src', thumbnail[0].toDataURL());
+            });
+        });
+    });
+});
+
+</script>
+
+
+
+<script>
+    var fileTag = document.getElementById("filetag"),
+    preview = document.getElementById("preview");
+
+fileTag.addEventListener("change", function() {
+  changeImage(this);
+});
+
+function changeImage(input) {
+  var reader;
+
+  if (input.files && input.files[0]) {
+    reader = new FileReader();
+
+    reader.onload = function(e) {
+      preview.setAttribute('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+
+</script>
+
+{% endblock %}

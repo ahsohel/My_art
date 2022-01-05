@@ -1,0 +1,1003 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<title>Designs</title>
+<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<meta charset=utf-8 />
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>
+
+    <style>
+       div.tagsinput span.tag {
+    border: 1px solid #b7bbb0;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    display: block;
+    float: left;
+    padding: 5px;
+    text-decoration: none;
+    background: #e3e3e3;
+    color: #000000;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-family: helvetica;
+    font-size: 13px;
+}
+
+
+div.tagsinput span.tag a {
+    font-weight: 700;
+    color: #0e0e0e;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+    </style>
+<div class="content-section" >
+
+    <!-- Header Area -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="#">TapArt</a>
+        <a class="nav-link" href="#">Guide</a>
+        <a class="nav-link" href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav> -->
+
+
+
+
+<nav class="navbar mx-auto navbar-expand-md navbar-dark bg-dark" style="padding: 16px; width: 1101px;" id="navbar2">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav mx-auto">
+        <li>
+          <a class="nav-link active" aria-current="page" href="http://www.tapart.io/">TapArt</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown">Guide</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item"
+              href="https://www.tapart.io/blogs/news/preparing-your-artwork-art-by-emerging-artists-wall-arts">Prepare
+              Your Artwork</a>
+            <a class="dropdown-item"
+              href="https://www.tapart.io/blogs/news/promoting-your-artwork-canvas-art-wall-art-art-prints">Promote Your
+              Artwork</a>
+            <a class="dropdown-item"
+              href="https://www.tapart.io/blogs/news/intellectual-property-rights-and-licenses">Rights and Licenses</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.tapart.io/pages/contact-us">Contact Us</a>
+        </li>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="background: #ffffff; width: 1101px; padding: 7px 20px;  border: 1px solid #dddddd;  border-radius: 3px;    margin-bottom: 20px;">
+
+
+
+      <div style="margin-top: 11px;">
+        {% if user.is_authenticated %}
+        {% include 'subdomain_navbar.html' %}
+        {% endif %}
+      </div>
+<div style="margin-top: 30px;"></div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="upload-panel">
+            <!-- panel top -->
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><button type="button" class="btn btn-dark m-3" data-bs-toggle="modal" data-bs-target="#modal">
+                  Add new Design
+                </button></div>
+
+
+            </div>
+
+<!--            <div class="row">-->
+<!--              <div class="col-lg-4">-->
+<!--                <button type="button" class="btn btn-light m-3">-->
+<!--                  <i class="fas fa-th"></i> Grid-->
+<!--                </button>-->
+<!--              </div>-->
+<!--              <div class="col-lg-8">-->
+<!--                <div class="search-filter-wrap">-->
+<!--                  &lt;!&ndash; Search Form &ndash;&gt;-->
+<!--                  <form class="form-inline">-->
+<!--                    <input class="form-control mr-sm-2" type="search" placeholder="Search Title or Tags"-->
+<!--                      aria-label="Search" />-->
+<!--                  </form>-->
+<!--                  <div class="filter">-->
+<!--                    <h5 class="filter-title">Filter :</h5>-->
+<!--                    <select class="form-select" aria-label="Default select">-->
+<!--                      <option selected>All</option>-->
+<!--                      <option value="1">Published</option>-->
+<!--                      <option value="2">Drafts</option>-->
+<!--                    </select>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+            <div class="row justify-content-center py-5 mb-3">
+              <div class="col-lg-10">
+                  <div class="row">
+                    {% for upload in upload_images %}
+                    <div class="col-md-3">
+                      <div class="card ml-4" style="width: 10rem; height: 13rem; margin: 5px; overflow: hidden; ">
+
+
+                        <img src="{{ upload.image.url }}" class="card-img-top" alt="..." style="margin: 3px; width: 11rem; height: 8rem; margin: 5px; overflow: hidden;">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ upload.title }}</h5>
+                          {# <p class="card-text">{{ user.artwork_details.description }}</p>#}
+
+                        </div>
+                      </div>
+                      <div class="card-body">
+
+                        </div>
+
+
+                    </div>
+                    {% endfor %}
+
+                  </div>
+                  {% comment %}
+<!--                  <div class="single-artwork edit green">ddd-->
+<!--                    <div class="icon"><i class="fas fa-pencil-alt"></i></div>-->
+<!--                  </div>-->
+                  {% endcomment %}
+<!--                  <div class="single-artwork">-->
+<!--                    <div class="icon"><i class="fas fa-plus"></i></div>-->
+<!--                  </div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+          <img src="https://cdn.shopify.com/s/files/1/0142/6273/0810/files/410_for_mobile_410x.png?v=1613699267" alt="TapArt Logo" width="60" height="60" class="center" style=" margin-left: 120px;  margin-top: 15px;">
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+      </div>
+
+
+    </div>
+
+
+
+
+
+      <!-- Button trigger modal -->
+
+      <!-- ======== 1st Modal with content ======== -->
+      <div class="addArtModal modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: black;">
+              <h5 class="modal-title" id="modalLabel">Upload your Artwork </h5>
+              <button class="btn btn-light close-btn" type="button" data-bs-dismiss="modal">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- 1st modal content -->
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <!-- Box -->
+                    <div class="inst-box">
+                      <h5 class="title">What file types can i upload?</h5>
+                      <div class="my-2 require-type">
+                        <ul>
+                          <li><i class="fas fa-check-circle"></i> PNG</li>
+                          <li><i class="fas fa-check-circle"></i> JPG</li>
+                          <li><i class="fas fa-check-circle"></i> RGB</li>
+                        </ul>
+                        <p>Some apparel types require PNG files</p>
+                      </div>
+                      <div class="my-2 require-type not-supported">
+                        <p class="mb-2">Not Supported:</p>
+                        <ul>
+                          <li><i class="fas fa-times-circle"></i> SVG</li>
+                          <li><i class="fas fa-times-circle"></i> AI</li>
+                          <li><i class="fas fa-times-circle"></i> PSD</li>
+                          <li><i class="fas fa-times-circle"></i> PDF</li>
+                          <li><i class="fas fa-times-circle"></i> TIF</li>
+                          <li><i class="fas fa-times-circle"></i> CMYK</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <!-- box -->
+
+<!--                    <div class="inst-box">-->
+<!--                      <h5 class="title">-->
+<!--                        <i class="fas fa-bahai"></i> What does "Featured" mean?-->
+<!--                      </h5>-->
+<!--                      <p>-->
+<!--                        The Featured version of your artwork will appear in My-->
+<!--                        Society and become the default asset for your Wall Art-->
+<!--                        products.-->
+<!--                      </p>-->
+<!--                    </div>-->
+
+                    <!-- box -->
+                    <div class="inst-box">
+                      <h5 class="title">How large should my assets be?</h5>
+                      <p>
+                        Certain products require different specs to ensure a high
+                        paint quality.
+                        <b>The max file size each asset is 150MB.</b>
+
+                        <a class="require-link" href="#">View all product size requirements</a>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="mb-4 margin-title-sm">
+                      <h5 class="title">
+                        Enter Artwork Title
+
+<!--                        <span class="tooltip-sign" data-bs-toggle="tooltip" data-bs-placement="top"-->
+<!--                          title="Tooltip on top">-->
+<!--                          <i class="far fa-question-circle"></i>-->
+<!--                        </span>-->
+                      </h5>
+                      <form id="ajax" class="form-inline">
+                        {%csrf_token%}
+                        <input class="form-control" type="input" name="title" placeholder="Artwork Title"
+                          aria-label="title"  onkeyup="onkeydown_here(this.value)" id="get_input_2"/>
+                        <div>
+                          <h5 class="title">
+                            </br>
+
+                            Upload Artwork
+
+<!--                            <span class="tooltip-sign" data-bs-toggle="tooltip" data-bs-placement="top"-->
+<!--                              title="Tooltip on top">-->
+<!--                              <i class="far fa-question-circle"></i>-->
+<!--                            </span>-->
+                          </h5>
+
+                          <div class="upload-container" style="height: 900px;">
+                            <div class="uploader upload-item">
+<!--                              <div class="uploader-icon">-->
+<!--                                <img src="./images/cloud-upload.png" alt="uploader" />-->
+<!--                              </div>-->
+                                <div class="uploader-icon">
+                                  <div class="uploader-icon">
+                                    <i class="fas fa-arrow-circle-up"></i>
+                                  </div>
+                                </div>
+
+                              <span>Drag and drop or click below to upload</span>
+                              <div id="inp-file" class="file btn btn-lg btn-primary">
+                                Upload
+                                <input type="file" name="image" name="file" id="img_up_continue_show_first" onchange="readURL(this);"/>
+
+                              </div>
+
+                            </div>
+                            {% comment %}
+                            <div class="upload-item"></div>
+                            {% endcomment %}
+
+                            <div class="upload-item">
+<!--                              <img style="height: 100%; width: 100%" src="{{ last_image.image.url }}"-->
+<!--                                alt="Girl in a jacket" width="500" height="600" />-->
+                              <img id="blah" src="#" alt="Not select yet" width="500" height="600" />
+
+<!--                              <img id="prev_image_first" style="height: 100%; width: 100%" src="{{ last_image.image.url }}"-->
+<!--                                alt="Girl in a jacket" width="500" height="600" />-->
+                            </div>
+                            <!-- <div class="upload-item"></div>
+                        <div class="upload-item"></div>
+                        <div class="upload-item"></div>
+                        <div class="upload-item"></div>
+                        <div class="upload-item"></div>
+                        <div class="upload-item"></div>
+                        <div class="upload-item"></div>
+                        <div class="upload-item"></div> -->
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <!-- Upload wrap -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">
+                Cancel
+              </button>
+              <div id="going_next">
+                <button class="btn btn-dark" disabled>
+                <i style="margin-right: 10px" class="fas fa-arrow-right"></i>
+                Continue
+              </button>
+
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======== 2nd Modal with content ======== -->
+      <div class="addArtModal modal fade" id="modal2" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: black;">
+              <h5 class="modal-title" id="modalLabel1">Upload your Artwork</h5>
+              <button class="btn btn-light close-btn" type="button" data-bs-dismiss="modal">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- 1nd Modal Content -->
+              <div class="row">
+                <div class="col-lg-4">
+                  {% comment %}
+                  <div class="view-image" id="prev_image_2">
+                    {% endcomment %}
+                    <img id="prev_image" src="{{ last_image.image.url }}" class="card-img-top view-image" alt="..." />
+                    {% comment %} $("#prev_image").attr("src", data["last_img_url"]);
+
+                    ddddddddddddd
+                    $("#prev_title").text(data["title"]);
+                    $("#div_span").text(data["title"]); {% endcomment %}
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="agreement-box">
+
+                      <h5 class="title" >Artist Agreement for  "<span id="prev_title">Batch!</span>" </h5>
+                      <p>
+                  Any violation of TapArt's
+                  <a href="https://tapart-art-original.s3.amazonaws.com/artist_portal/TAPART+Artist+Licensing+Agreement+DRAFT+(Dave's+Revisions)+-AK.pdf"
+                    target="_blank">Artist
+                    Licensing Agreement</a> may result in
+                  your artwork being taken down, your account being suspended or
+                  terminated, and/or any other remedies or penalties under
+                  applicable law. In addition, you will not receive any Artist
+                  Share amounts related to such artwork.
+                </p>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheck"  onclick="its_cheacked()"/>
+                        <label class="form-check-label" for="flexCheck">
+                          I represent and warrant that I have the right to upload and
+                          use this artwork and it does not violate TapArt's
+                          <a href="https://tapart-art-original.s3.amazonaws.com/artist_portal/TAPART+Artist+Licensing+Agreement+DRAFT+(Dave's+Revisions)+-AK.pdf"
+                            target="_blank">Artist
+                            Licensing Agreement</a>,
+                          including:
+                        </label>
+                      </div>
+
+                      <ul>
+                        <li>Created and own this original artwork.</li>
+                        <li>
+                          I did not copy someone else's artwork, photography, or
+                          design
+                        </li>
+                        <li>
+                          I have the right to display any person, character, name,
+                          logo, image or quote contained in this artwork
+                        </li>
+                      </ul>
+
+                      <div class="radio-mature-wrap">
+                        <div class="d-flex dflex-box">
+                          <h5>Does this artwork contain mature content?</h5>
+                          <div class="radio-mature">
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="matureRadio" id="matureRadio1"
+                                value="yes" onclick="its_cheacked()"/>
+                              <label class="form-check-label" for="matureRadio1">
+                                Yes
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="matureRadio" id="matureRadio2"
+                                value="no" onclick="its_cheacked()"/>
+                              <label class="form-check-label" for="matureRadio2">
+                                No
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <p class="disclaimer">
+                          <i>Mature content is generally anything that contains
+                            sexual, graphic, or violent imagery or language. To learn
+                            more visit our Community Guidelines</i>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">
+                  Cancel
+                </button>
+                <button type="button" class="btn btn-dark" data-bs-target="#modal" data-bs-toggle="modal"
+                  data-bs-dismiss="modal">
+                  <i style="margin-right: 10px" class="fas fa-arrow-left"></i>
+                  Back
+                </button>
+
+                <span id="go_or_not">
+                <button type="button" class="btn btn-dark" disabled>
+                  <i style="margin-right: 10px" class="fas fa-arrow-right"></i>
+                  Continue
+                </button>
+                </span>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- ======== 3rd Modal with content ======== -->
+        <div class="addArtModal modal fade" id="modal3" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" >
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+              <div class="modal-header" style="background-color: black;">
+                <h5 class="modal-title" id="modalLabel3">Upload your Artwork</h5>
+                <button class="btn btn-light close-btn" type="button" data-bs-dismiss="modal">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                <!-- 3nd Modal Content -->
+                <form id="my-form" class="artwork-details-form">
+                  <h5 class="form-title">Artwork Details</h5>
+                  <div class="mb-3">
+                    <div class="row g-3 align-items-center">
+                      <div class="col-auto">
+                        <label  class="col-form-label">Subjects<span class="text-danger">*</span>
+                          :</label>
+                      </div>
+                      <div class="col-auto">
+                        <select class="form-select" aria-label="Default select category-select" id="id_category" onchange="go_continu_from_modal_three_to_four()">
+                          <option value="">choose</option>
+                          <option value="Abstract">Abstract</option>
+                          <option value="Animals">Animals</option>
+
+                          <option value="Cityscape">Cityscape</option>
+                          <option value="Portrait">Portrait</option>
+                          <option value="Still Life">Still Life</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <div class="row g-1 align-items-center">
+                      <label  class="col-form-label">Categories :</label>
+
+                      <div class="suggest-tag-list">
+                        <a style="text-decoration: unset; color: #000; background-color: #e3e3e3; border-color: #e3e3e3; margin: 4px;" class="btn btn-secondary" href="#" data-value="Abstract">Abstract</a>
+                        <a style="text-decoration: unset; color: #000; background-color: #e3e3e3; border-color: #e3e3e3; margin: 4px;" class="btn btn-secondary" href="#" data-value="Climate Action">Climate Action</a>
+                        <a style="text-decoration: unset; color: #000; background-color: #e3e3e3; border-color: #e3e3e3; margin: 4px;" class="btn btn-secondary" href="#" data-value="Collage">Collage</a>
+                        <a style="text-decoration: unset; color: #000; background-color: #e3e3e3; border-color: #e3e3e3; margin: 4px;" class="btn btn-secondary" href="#" data-value="Crypto">Crypto</a>
+                        <a style="text-decoration: unset; color: #000; background-color: #e3e3e3; border-color: #e3e3e3; margin: 4px;" class="btn btn-secondary" href="#" data-value="Happy Home">Happy Home</a>
+                        <a style="text-decoration: unset; color: #000; background-color: #e3e3e3; border-color: #e3e3e3; margin: 4px;" class="btn btn-secondary" href="#" data-value="Human Rights">Human Rights</a>
+                        <a style="text-decoration: unset; color: #000; background-color: #e3e3e3; border-color: #e3e3e3; margin: 4px;" class="btn btn-secondary" href="#" data-value="Mental Health">Mental Health</a>
+                        <a style="text-decoration: unset; color: #000; background-color: #e3e3e3; border-color: #e3e3e3; margin: 4px;" class="btn btn-secondary" href="#" data-value="Modern">Modern</a>
+                        <a style="text-decoration: unset; color: #000; background-color: #e3e3e3; border-color: #e3e3e3; margin: 4px;" class="btn btn-secondary" href="#" data-value="Nature">Nature</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3" >
+<!--                    <div class="row g-2 align-items-center" onmousemove="go_continu_from_modal_three_to_four()" onkeyup="go_continu_from_modal_three_to_four()" onmouseover="go_continu_from_modal_three_to_four()" onclick="go_continu_from_modal_three_to_four()" onchange="go_continu_from_modal_three_to_four()" onkeydown="go_continu_from_modal_three_to_four()" onmousedown="go_continu_from_modal_three_to_four()" onmouseup="go_continu_from_modal_three_to_four()" onmouseenter="go_continu_from_modal_three_to_four()" onmouseleave="go_continu_from_modal_three_to_four()" onmouseout="go_continu_from_modal_three_to_four()">-->
+                    <div class="row g-2 align-items-center" onmousemove="go_continu_from_modal_three_to_four()" onkeyup="go_continu_from_modal_three_to_four()" onmouseover="go_continu_from_modal_three_to_four()"  onkeydown="go_continu_from_modal_three_to_four()"  onmouseleave="go_continu_from_modal_three_to_four()" onmouseout="go_continu_from_modal_three_to_four()">
+                      <label  class="col-form-label">Tags<span class="text-danger">*</span> :
+                        <small><i>(up to 20 tags allowed)</i></small></label>
+
+
+
+                        <input name="tags" id="input-tags" data_role="tagsinput" style="width:500px !important" />
+
+
+<!--                      <input name="tag" id="id_tag" type="text" class="form-control"-->
+<!--                        placeholder="Press enter after each tag to add" aria-describedby="tags" />-->
+                    </div>
+
+                  </div>
+                  <div class="mb-3">
+<!--                    <div class="row g-2 align-items-center"  onmousemove="go_continu_from_modal_three_to_four()" onkeyup="go_continu_from_modal_three_to_four()" onmouseover="go_continu_from_modal_three_to_four()" onclick="go_continu_from_modal_three_to_four()" onchange="go_continu_from_modal_three_to_four()" onkeydown="go_continu_from_modal_three_to_four()" onmousedown="go_continu_from_modal_three_to_four()" onmouseup="go_continu_from_modal_three_to_four()" onmouseenter="go_continu_from_modal_three_to_four()" onmouseleave="go_continu_from_modal_three_to_four()" onmouseout="go_continu_from_modal_three_to_four()">-->
+                    <div class="row g-2 align-items-center"  onmousemove="go_continu_from_modal_three_to_four()" onkeyup="go_continu_from_modal_three_to_four()" onmouseover="go_continu_from_modal_three_to_four()"  onkeydown="go_continu_from_modal_three_to_four()"  onmouseleave="go_continu_from_modal_three_to_four()" onmouseout="go_continu_from_modal_three_to_four()">
+                      <label  class="col-form-label">Description :
+                        <small><i>(Character Limit 250)</i></small></label>
+                      <textarea rows="5" class="form-control"
+                        placeholder="Use this section to tell the story and inspiration behind your creative"
+                        aria-describedby="tags" id="id_description" onclick="go_continu_from_modal_three_to_four()"></textarea>
+                    </div>
+
+                  </div>
+
+                  <div class="d-grid">
+                    <button id="img_atwork_continue" w="100" class="btn btn-dark">
+                      Save Details
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">
+                  Cancel
+                </button>
+                <button type="button" class="btn btn-dark" data-bs-target="#modal2" data-bs-toggle="modal"
+                  data-bs-dismiss="modal" id="m3">
+                  <i style="margin-right: 10px" class="fas fa-arrow-left"></i>
+                  Back
+                </button>
+
+               <span id="trd_continu">
+                <button type="button" class="btn btn-dark" disabled>
+                  <i style="margin-right: 10px" class="fas fa-arrow-right"></i>
+                  Continue
+                </button>
+                </span>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ======== 4th Modal with content ======== -->
+        <div class="addArtModal modal fade" id="modal4" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color: black;">
+                <h5 class="modal-title" id="modalLabel4">Upload your Artwork</h5>
+                <button class="btn btn-light close-btn" type="button" data-bs-dismiss="modal">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- 4th Modal Content -->
+                <div class="publish-artwork">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="is_uploaded" onclick="modal_four()"/>
+                    <label class="form-check-label" >
+                      I represent that the little, tags and description of my artwork
+                      do not include the names, littles, brands, trademarks, or
+                      copyrighted material that belong to any other person, company or
+                      organization.
+                    </label>
+                  </div>
+                  <div class="d-grid mt-3" id="four_id">
+                    <button type="submit" w="100" class="btn btn-dark" data-bs-dismiss="modal" id="publish_artwork" onclick="for_reload()" disabled>
+                      Save Details
+                    </button>
+                    <i class="disclaimer">Please note: It can take up to 30 minutes for your post to
+                      appear in your shop</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/091fd720e5.js" crossorigin="anonymous"></script>
+
+    <script src="{% static 'css1/bootstrap.min.js' %}"></script>
+
+
+
+
+    <script>
+
+      function img_up_continue2(){
+          console.log('i am in');
+            let data = new FormData($("#ajax").get(0));
+            console.log(data);
+            $.ajax({
+              url: "{% url 'save_image' %}",
+              method: "POST",
+              data: data,
+              processData: false,
+              contentType: false,
+
+              success: function (data) {
+                $("#prev_image").attr("src", data["last_img_url"]);
+                $("#prev_title").text(data["title"]);
+                $("#div_span").text(data["title"]);
+              },
+            });
+        }
+
+      $(document).ready(function () {
+        $(document).ready(function () {
+          $("#img_up_continue").click(function () {
+            console.log('i am in');
+            let data = new FormData($("#ajax").get(0));
+            console.log(data);
+            $.ajax({
+              url: "{% url 'save_image' %}",
+              method: "POST",
+              data: data,
+              processData: false,
+              contentType: false,
+
+              success: function (data) {
+                $("#prev_image").attr("src", data["last_img_url"]);
+                $("#prev_title").text(data["title"]);
+                $("#div_span").text(data["title"]);
+              },
+            });
+          });
+        });
+
+
+
+
+        $(document).ready(function () {
+
+          $("#id_category").change(function () {
+            $(this).prop("checked");
+          });
+
+          $("#img_atwork_continue").click(function () {
+            console.log("Clicked atwork sohel  bhi");
+            let title = $("#id_title").val();
+
+            let tag = $("#input-tags").val();
+            let description = $("#id_description").val();
+            let category = $("#id_category").val();
+            console.log(title, tag, description, category);
+            let data = {
+              csrfmiddlewaretoken: "{{ csrf_token }}",
+              category: category,
+              description: description,
+              title: title,
+              tag: tag,
+            };
+            $.ajax({
+              url: "{% url 'atwork' %}",
+              method: "POST",
+              data: data,
+              success: function (data) { },
+            });
+          });
+        });
+        $(document).ready(function () {
+          $("#publish_artwork").click(function () {
+            console.log("Clicked finish");
+            let is_uploaded = $("#is_uploaded").is(":checked");
+            console.log("is uploaded=", is_uploaded);
+
+            let data = {
+              csrfmiddlewaretoken: "{{ csrf_token }}",
+              is_uploaded: is_uploaded,
+            };
+            $.ajax({
+              url: "{% url 'published_art_work' %}",
+              method: "POST",
+              data: data,
+              dataType: "json",
+              success: function (data) {
+                console.log(data);
+              },
+            });
+          });
+        });
+      });
+    </script>
+    <script>
+      document.getElementById("my-form").addEventListener("click", function (e) {
+        e.preventDefault();
+      });
+    </script>
+
+
+  <script>
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(139)
+                    .height(147);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+
+
+        if(document.getElementById('get_input_2').value){
+            document.getElementById('going_next').innerHTML =
+            `<button id="" onclick="img_up_continue2()" class="btn btn-dark" data-bs-dismiss="modal" data-bs-target="#modal2"
+            data-bs-toggle="modal">
+              <i style="margin-right: 10px" class="fas fa-arrow-right"></i>
+              Continue
+            </button>`
+        }
+
+
+
+    }
+
+
+  </script>
+
+
+  <script>
+
+    function for_reload(){
+
+    setTimeout(
+      function()
+      {
+        location.href = '/pages/designs/'
+      }, 1500);
+
+
+    setTimeout(
+      function()
+      {
+        location.href = '/pages/designs/'
+      }, 3000);
+
+    }
+
+
+  </script>
+
+
+
+
+
+
+
+  <script>
+    function onkeydown_here(this_value){
+
+    console.log('this_value')
+    console.log(this_value)
+
+if(this_value){
+
+if(document.getElementById('img_up_continue_show_first').value){
+document.getElementById('going_next').innerHTML =
+            `<button id="" onclick="img_up_continue2()" class="btn btn-dark" data-bs-dismiss="modal" data-bs-target="#modal2"
+            data-bs-toggle="modal">
+              <i style="margin-right: 10px" class="fas fa-arrow-right"></i>
+              Continue
+            </button>`
+}
+
+
+else{
+console.log('empty')
+document.getElementById('going_next').innerHTML = `<button class="btn btn-dark" disabled="">
+                <i style="margin-right: 10px" class="fas fa-arrow-right"></i>
+                Continue
+              </button>`
+
+}
+
+
+}
+else{
+console.log('empty')
+document.getElementById('going_next').innerHTML = `<button class="btn btn-dark" disabled="">
+                <i style="margin-right: 10px" class="fas fa-arrow-right"></i>
+                Continue
+              </button>`
+
+}
+
+
+
+
+    }
+
+
+  </script>
+
+
+
+
+  </div>
+
+
+<script>
+  function its_cheacked(){
+
+  if (document.getElementById('flexCheck').checked && document.getElementById('matureRadio2').checked){
+
+
+document.getElementById('go_or_not').innerHTML = `<button type="button" class="btn btn-dark" data-bs-target="#modal3" data-bs-toggle="modal"
+                  data-bs-dismiss="modal" id="img_preview_continue">
+                  <i style="margin-right: 10px" class="fas fa-arrow-right"></i>
+                  Continue
+                </button>`
+
+
+  }
+  else{
+  document.getElementById('go_or_not').innerHTML = `<button type="button" class="btn btn-dark" disabled>
+                  <i style="margin-right: 10px" class="fas fa-arrow-right"></i>
+                  Continue
+                </button>`
+  }
+
+//console.log(document.getElementById('flexCheck').checked)
+//console.log(document.getElementById('matureRadio1').checked)
+//console.log(document.getElementById('matureRadio2').checked)
+
+  }
+
+
+</script>
+
+
+
+<script>
+
+    $('#input-tags').tagsInput();
+
+$("a").click(function(e) {
+  e.preventDefault();
+  var i = $(this).data("value");
+  $('#input-tags').addTag(i);
+});
+
+</script>
+
+
+
+<script>
+//document.getElementById('modal3').addEventListener("mousemove",  go_continu_from_modal_three_to_four);
+//document.getElementById('modal3').addEventListener("onmouseout",  go_continu_from_modal_three_to_four);
+//document.getElementById('modal3').addEventListener("onmouseenter",  go_continu_from_modal_three_to_four);
+//document.getElementById('modal3').addEventListener("onmouseup",  go_continu_from_modal_three_to_four);
+//document.getElementById('modal3').addEventListener("onmousedown",  go_continu_from_modal_three_to_four);
+
+
+
+  function go_continu_from_modal_three_to_four(){
+
+  if (document.getElementById('id_category').value && document.getElementById('input-tags').value && document.getElementById('id_description').value){
+    console.log(' you can click, ok')
+
+
+    document.getElementById('trd_continu').innerHTML = ` <button type="button" class="btn btn-dark" data-bs-target="#modal4" data-bs-toggle="modal"
+                  data-bs-dismiss="modal">
+                  <i style="margin-right: 10px" class="fas fa-arrow-right"></i>
+                  Continue
+                </button>`
+
+
+  }
+else{
+  console.log('not ok')
+
+  document.getElementById('trd_continu').innerHTML = ` <button type="button" class="btn btn-dark" disabled>
+                  <i style="margin-right: 10px" class="fas fa-arrow-right"></i>
+                  Continue
+                </button>`
+
+
+  }
+
+  }
+
+
+</script>
+
+<script>
+  function modal_four(){
+    if(document.getElementById('is_uploaded').checked){
+
+           document.getElementById('four_id').innerHTML = `<button type="submit" w="100" class="btn btn-dark" data-bs-dismiss="modal" id="publish_artwork" onclick="for_reload()" >
+                      Save Details
+                    </button>`
+
+
+
+
+
+           $(document).ready(function () {
+          $("#publish_artwork").click(function () {
+            console.log("Clicked finish");
+            let is_uploaded = $("#is_uploaded").is(":checked");
+            console.log("is uploaded=", is_uploaded);
+
+            let data = {
+              csrfmiddlewaretoken: "{{ csrf_token }}",
+              is_uploaded: is_uploaded,
+            };
+            $.ajax({
+              url: "{% url 'published_art_work' %}",
+              method: "POST",
+              data: data,
+              dataType: "json",
+              success: function (data) {
+                console.log(data);
+              },
+            });
+          });
+        });
+
+
+
+
+    }
+
+    else{
+    document.getElementById('four_id').innerHTML = `<button type="submit" w="100" class="btn btn-dark" data-bs-dismiss="modal" id="publish_artwork" onclick="for_reload()" disabled>
+                      Save Details
+                    </button>`
+
+    }
+
+  }
+
+
+function aaa(){
+  console.log('sssss')
+  document.location='/profile'
+}
+
+function logout_aaa(){
+document.location='/login_redirect_from_logout'
+}
+function Designs_aaa(){
+document.location='/pages/designs'
+}
+
+</script>
+
+
+    {% endblock %}

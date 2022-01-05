@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--<nav class="navbar mx-auto navbar-expand-lg navbar-dark bg-dark" id="navbar">-->
+<!--  <div class="container">-->
+<!--    <button-->
+<!--      class="navbar-toggler"-->
+<!--      type="button"-->
+<!--      data-bs-toggle="collapse"-->
+<!--      data-bs-target="#navbarNavAltMarkup"-->
+<!--      aria-controls="navbarNavAltMarkup"-->
+<!--      aria-expanded="false"-->
+<!--      aria-label="Toggle navigation"-->
+<!--    >-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
+<!--      <div class="navbar-nav mx-auto">-->
+<!--        <a class="nav-link active" aria-current="page" href="#">TapArt</a>-->
+<!--        <a class="nav-link" href="#">Guide</a>-->
+<!--        <a class="nav-link" href="#">Contact</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+<h2>You have been logged out</h2>
+<div class="border-top pt-3">
+    <small class="text-muted">
+        <a href="{% url 'login_page' %}">Log In Again</a>
+    </small>
+</div>
+
+{% endblock %}
